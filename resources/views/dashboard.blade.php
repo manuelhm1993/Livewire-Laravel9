@@ -8,8 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- Llamar al componente show-posts, pero solo se deben usar en secciones dinámicas --}}
-            @livewire('show-posts')
+            {{-- Enviar parámetros al componente, en un array asociativo --}}
+            @livewire('show-posts', ['title' => 'Este es un título de prueba'])
 
+            {{-- Llamar a un componente dentro de una carpeta especificada nav. --}}
+            {{-- @livewire('nav.show-posts') --}}
             {{-- Para secciones que se repiten, se deben usar los componentes blade --}}
         </div>
     </div>
