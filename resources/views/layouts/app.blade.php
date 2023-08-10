@@ -11,10 +11,10 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
         <!-- Styles -->
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        <!-- Styles Los estilos de livewire van después de los de la app -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -39,6 +39,9 @@
         </div>
 
         @stack('modals')
+
+        <!-- Scripts Los scripts de livewire van después de app -->
+        <script src="{{ mix('js/app.js') }}"></script>
 
         @livewireScripts
     </body>
