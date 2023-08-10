@@ -20,8 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/prueba/{name}', ShowPosts::class);
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
