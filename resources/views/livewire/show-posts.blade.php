@@ -1,7 +1,8 @@
 <div>
     {{-- Para que el renderizado reactivo funcione, todo el contenido debe estar dentro de un div padre --}}
-    <h1>Hola mundo</h1>
-
-    {{-- Invocar a la propiedad de la clase --}}
-    {{ $titulo }}
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Hola mundo
+        </h2>
+    </x-slot>
 </div>

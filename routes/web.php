@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// --------------- Usar el componente como un controlador
+use App\Http\Livewire\ShowPosts;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +25,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // --------------- Usar el componente como un controlador
+    Route::get('/dashboard', ShowPosts::class)->name('dashboard');
 });
