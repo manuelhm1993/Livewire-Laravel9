@@ -7,9 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
+            {{-- Llamar al componente show-posts, pero solo se deben usar en secciones dinámicas --}}
+            @livewire('show-posts')
+
+            {{-- Para secciones que se repiten, se deben usar los componentes blade --}}
         </div>
     </div>
 </x-app-layout>
