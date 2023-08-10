@@ -6,6 +6,12 @@ use Livewire\Component;
 
 class ShowPosts extends Component
 {
+    public $name;
+
+    public function mount($name) {
+        $this->name = $name;
+    }
+
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
     {
