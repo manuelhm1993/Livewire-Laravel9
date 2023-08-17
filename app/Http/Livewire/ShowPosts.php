@@ -29,6 +29,13 @@ class ShowPosts extends Component
 
     // --------------- Este método se encarga de ordenar los registros
     public function order($sort) {
-        $this->sort = $sort;
+        // --------------- Alterna entre ascendente y descendente
+        if($this->sort === $sort) {
+            $this->direction = ($this->direction === 'desc') ? 'asc' : 'desc';
+        }
+        else {
+            $this->sort = $sort;
+            $this->direction = 'desc';
+        }
     }
 }
