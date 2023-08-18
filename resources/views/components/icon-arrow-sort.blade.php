@@ -1,12 +1,20 @@
 {{-- Componente para validar el ordenamiento MH --}}
-<div class="fa-pull-right mt-1">
+<div class="float-right mt-1">
     @if ($this->sort === $sort)
         @if ($this->direction === $direction)
-            <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
-        @else
-            <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+            @if ($this->sort === 'id')
+                <i class="fa-solid fa-arrow-up-1-9"></i>
+            @else
+                <i class="fa-solid fa-arrow-up-a-z"></i>
+            @endif
+        @else 
+            @if ($this->sort === 'id')
+                <i class="fa-solid fa-arrow-down-9-1"></i>
+            @else 
+                <i class="fa-solid fa-arrow-down-z-a"></i>
+            @endif
         @endif
     @else
-        <i class="fa fa-sort" aria-hidden="true"></i>
+        <i class="fa-solid fa-sort"></i>
     @endif
 </div>
