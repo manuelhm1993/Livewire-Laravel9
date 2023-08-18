@@ -25,26 +25,26 @@
                             {{-- Desencadena el evento click y llama a order --}}
                             <th wire:click="order('id')"
                                 class="cursor-pointer px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                ID
+                                {{ __('ID') }}
 
                                 {{-- Componente blade para validar el icono de ordenamiento con los parametros sort y direction --}}
                                 <x-icon-arrow-sort sort="id" direction="asc" />
                             </th>
                             <th wire:click="order('title')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Title
+                                {{ __('Title') }}
 
                                 <x-icon-arrow-sort sort="title" direction="asc" />
                             </th>
                             <th wire:click="order('content')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Content
+                                {{ __('Content') }}
 
                                 <x-icon-arrow-sort sort="content" direction="asc" />
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Actions
+                                {{ __('Actions') }}
                             </th>
                         </tr>
                     </thead>
