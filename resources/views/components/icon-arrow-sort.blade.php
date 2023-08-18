@@ -1,3 +1,4 @@
+{{-- Componente para validar el ordenamiento MH --}}
 <div class="fa-pull-right mt-1">
     @if ($this->sort === $sort)
         @if ($this->direction === $direction)

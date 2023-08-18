@@ -10,11 +10,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-table>
             {{-- Input para buscar elementos --}}
-            <div class="px-6 py-4">
+            <div class="px-6 py-4 flex items-center">
                 {{-- <input type="text" wire:model="search"> --}}
 
                 {{-- Usar el componente input de jetstream --}}
-                <x-input class="w-full" type="text" placeholder="Buscar..." wire:model="search" />
+                <x-input class="flex-1 mr-3" type="text" placeholder="Buscar..." wire:model="search" />
+
+                {{-- Al ser un componente livewire se debe llamar de alguna de estas dos maneras --}}
+                {{-- <livewire:create-post> --}}
+                @livewire('create-post')
             </div>
 
             {{-- Mostrar el contenido si existen registros --}}
@@ -24,7 +28,7 @@
                         <tr>
                             {{-- Desencadena el evento click y llama a order --}}
                             <th wire:click="order('id')"
-                                class="w-20 cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                class="w-24 cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 {{ __('ID') }}
 
                                 {{-- Componente blade para validar el icono de ordenamiento con los parametros sort y direction --}}
