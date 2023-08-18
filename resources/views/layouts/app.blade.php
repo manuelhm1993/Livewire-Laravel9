@@ -44,5 +44,17 @@
         @stack('modals')
 
         @livewireScripts
+
+        {{-- Escuchar un evento desde un script normal lanzado desde un componente --}}
+        <script>
+            // Recibe el mensaje de feedback desde la fuente del evento
+            Livewire.on('feedbackSA2', (feedback) => {
+                Swal.fire(
+                    '¡Post creado!',
+                    feedback,
+                    'success'
+                );
+            });
+        </script>
     </body>
 </html>
