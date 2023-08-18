@@ -35,7 +35,7 @@ class ShowPosts extends Component
         }
         else {
             $this->sort = $sort;
-            $this->direction = 'desc';
+            $this->direction = 'asc';
         }
     }
 }
