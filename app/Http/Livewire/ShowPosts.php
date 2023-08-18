@@ -13,6 +13,9 @@ class ShowPosts extends Component
     public $sort = 'id';
     public $direction = 'desc';
 
+    // --------------- Oyentes de eventos
+    protected $listeners = ['store' => 'render'];
+
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
     {

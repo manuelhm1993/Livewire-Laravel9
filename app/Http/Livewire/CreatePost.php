@@ -17,6 +17,12 @@ class CreatePost extends Component
             'title' => $this->title,
             'content' => $this->content
         ]);
+
+        // ----------- Resetear las variables luego de crear el post
+        $this->reset(['open', 'title', 'content']);
+
+        // ----------- Crear un evento para avisar a Show que se creó un nuevo post y renderize
+        $this->emit('store');
     }
 
     public function render()
