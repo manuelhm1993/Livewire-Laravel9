@@ -11,21 +11,24 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <!-- Fontawesome -->
+        <link href="{{ asset('vendor/fontawesome-free-6.4.2-web/css/fontawesome-all.min.css') }}" rel="stylesheet">
 
-        <!-- Styles Los estilos de livewire van después de los de la app -->
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -39,9 +42,6 @@
         </div>
 
         @stack('modals')
-
-        <!-- Scripts Los scripts de livewire van después de app -->
-        <script src="{{ mix('js/app.js') }}"></script>
 
         @livewireScripts
     </body>

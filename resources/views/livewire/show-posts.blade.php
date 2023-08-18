@@ -14,7 +14,7 @@
                 {{-- <input type="text" wire:model="search"> --}}
 
                 {{-- Usar el componente input de jetstream --}}
-                <x-input class="flex-1 mr-3" type="text" placeholder="Buscar..." wire:model="search" />
+                <x-input class="flex-1 mr-4" type="text" placeholder="Buscar..." wire:model="search" />
 
                 {{-- Al ser un componente livewire se debe llamar de alguna de estas dos maneras --}}
                 {{-- <livewire:create-post> --}}
@@ -28,21 +28,28 @@
                         <tr>
                             {{-- Desencadena el evento click y llama a order --}}
                             <th wire:click="order('id')"
-                                class="w-24 cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {{ __('ID') }}
+                                scope="col"
+                                class="w-24 cursor-pointer px-6 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <div class="float-left mt-1">
+                                    {{ __('ID') }}
+                                </div>
 
                                 {{-- Componente blade para validar el icono de ordenamiento con los parametros sort y direction --}}
                                 <x-icon-arrow-sort sort="id" direction="asc" />
                             </th>
                             <th wire:click="order('title')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {{ __('Title') }}
+                                <div class="float-left mt-1">
+                                    {{ __('Title') }}
+                                </div>
 
                                 <x-icon-arrow-sort sort="title" direction="asc" />
                             </th>
                             <th wire:click="order('content')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {{ __('Content') }}
+                                <div class="float-left mt-1">
+                                    {{ __('Content') }}
+                                </div>
 
                                 <x-icon-arrow-sort sort="content" direction="asc" />
                             </th>

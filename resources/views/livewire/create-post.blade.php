@@ -17,7 +17,6 @@
 
                 {{-- Sincronizar el formulario con las propiedades el componente --}}
                 <x-input type="text" class="w-full" wire:model.defer="title" />
-                {{ $title }}
             </div>
 
             <div class="mb-4">
@@ -26,7 +25,6 @@
                 
                 {{-- Utilizar las clases de tailwind para crear un form-control personal y aplicarlo a un texarea común --}}
                 <textarea name="" id="" rows="6" class="form-control w-full" wire:model.defer="content"></textarea>
-                {{ $content }}
             </div>
         </x-slot:content>
 
@@ -37,7 +35,7 @@
             </x-secondary-button>
 
             {{-- Botón de acción para crear un nuevo post --}}
-            <x-danger-button>
+            <x-danger-button wire:click="store">
                 Crear post
             </x-danger-button>
         </x-slot:footer>
