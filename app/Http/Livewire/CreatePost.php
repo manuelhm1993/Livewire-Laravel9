@@ -13,8 +13,8 @@ class CreatePost extends Component
 
     // ----------- Propiedad para establecer las reglas de validación, debe ser protected
     protected $rules = [
-        'title' => 'required|min:6',
-        'content' => 'required|min:6',
+        'title'   => 'required|max:100',
+        'content' => 'required|max:255',
     ];
 
     // ----------- Guarda el nuevo post
