@@ -11,8 +11,19 @@ class CreatePost extends Component
     public $open = false;
     public $title, $content;
 
+    // ----------- Propiedad para establecer las reglas de validación, debe ser protected
+    protected $rules = [
+        'title' => 'required|min:6',
+        'content' => 'required|min:6',
+    ];
+
     // ----------- Guarda el nuevo post
     public function store() {
+        // ----------- Llamar a las reglas de validación, igual que crear una clase Request o request->validate();
+        $this->validate();
+
+        // ----------- El flujo de ejecución no llega aquí si la validación falla
+
         Post::create([
             'title' => $this->title,
             'content' => $this->content
