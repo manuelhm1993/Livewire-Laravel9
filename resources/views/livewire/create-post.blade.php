@@ -12,15 +12,14 @@
 
         <x-slot:content>
             <div class="mb-4">
-                <x-validation-errors />
-            </div>
-
-            <div class="mb-4">
                 {{-- Hacer uso de los componentes de jetstream para facilitar la maquetación --}}
                 <x-label value="Título del post" />
 
                 {{-- Sincronizar el formulario con las propiedades el componente --}}
-                <x-input type="text" class="w-full" wire:model.defer="title" />
+                <x-input type="text" class="w-full" wire:model="title" />
+
+                {{-- Llamar al componente de validación de input jetstream --}}
+                <x-input-error for="title" />
             </div>
 
             <div class="mb-4">
@@ -29,6 +28,9 @@
 
                 {{-- Utilizar las clases de tailwind para crear un form-control personal y aplicarlo a un texarea común --}}
                 <textarea name="" id="" rows="6" class="form-control w-full" wire:model.defer="content"></textarea>
+
+                {{-- Llamar al componente de validación de input jetstream --}}
+                <x-input-error for="content" />
             </div>
         </x-slot:content>
 

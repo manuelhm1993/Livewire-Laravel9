@@ -13,9 +13,15 @@ class CreatePost extends Component
 
     // ----------- Propiedad para establecer las reglas de validación, debe ser protected
     protected $rules = [
-        'title'   => 'required|max:100',
+        'title'   => 'required|max:10',
         'content' => 'required|max:255',
     ];
+
+    // ----------- Validación en tiempo real, vincula la propiedad cuando ella cambia
+    public function updated($propertyName) 
+    {
+        $this->validateOnly($propertyName);
+    }
 
     // ----------- Guarda el nuevo post
     public function store() {
