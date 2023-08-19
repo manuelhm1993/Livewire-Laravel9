@@ -8,7 +8,7 @@
 
     {{-- Aplicar el centrado del navigation-menu.blade.php --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <x-table>
+        <x-mh.table>
             {{-- Input para buscar elementos --}}
             <div class="px-6 py-4 flex items-center">
                 {{-- <input type="text" wire:model="search"> --}}
@@ -35,7 +35,7 @@
                                 </div>
 
                                 {{-- Componente blade para validar el icono de ordenamiento con los parametros sort y direction --}}
-                                <x-icon-arrow-sort sort="id" direction="asc" />
+                                <x-mh.icon-arrow-sort sort="id" direction="asc" />
                             </th>
                             <th wire:click="order('title')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -43,7 +43,7 @@
                                     {{ __('Title') }}
                                 </div>
 
-                                <x-icon-arrow-sort sort="title" direction="asc" />
+                                <x-mh.icon-arrow-sort sort="title" direction="asc" />
                             </th>
                             <th wire:click="order('content')"
                                 class="cursor-pointer px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -51,7 +51,7 @@
                                     {{ __('Content') }}
                                 </div>
 
-                                <x-icon-arrow-sort sort="content" direction="asc" />
+                                <x-mh.icon-arrow-sort sort="content" direction="asc" />
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -98,6 +98,6 @@
                     No se encontraron coincidencias que mostrar
                 </div>
             @endif
-        </x-table>
+        </x-mh.table>
     </div>
 </div>

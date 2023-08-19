@@ -16,7 +16,7 @@
                 <x-label value="Título del post" />
 
                 {{-- Sincronizar el formulario con las propiedades el componente --}}
-                <x-input type="text" class="w-full" wire:model="title" />
+                <x-input type="text" class="w-full" wire:model.defer="title" />
 
                 {{-- Llamar al componente de validación de input jetstream --}}
                 <x-input-error for="title" />

@@ -8,20 +8,14 @@ use Livewire\Component;
 class CreatePost extends Component
 {
     // ----------- Propiedad para mostrar u ocultar el modal de creación de post
-    public $open = false;
+    public $open = true;
     public $title, $content;
 
     // ----------- Propiedad para establecer las reglas de validación, debe ser protected
     protected $rules = [
-        'title'   => 'required|max:10',
-        'content' => 'required|max:255',
+        'title'   => 'required',
+        'content' => 'required',
     ];
-
-    // ----------- Validación en tiempo real, vincula la propiedad cuando ella cambia
-    public function updated($propertyName) 
-    {
-        $this->validateOnly($propertyName);
-    }
 
     // ----------- Guarda el nuevo post
     public function store() {
