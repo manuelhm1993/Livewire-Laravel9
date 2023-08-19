@@ -26,14 +26,10 @@ class CreatePost extends Component
     // ----------- Guarda el nuevo post
     public function store() {
         // ----------- Llamar a las reglas de validación, igual que crear una clase Request o request->validate();
-        $this->validate();
+        $validatedData = $this->validate();
 
-        // ----------- El flujo de ejecución no llega aquí si la validación falla
-
-        Post::create([
-            'title' => $this->title,
-            'content' => $this->content
-        ]);
+        // ----------- Si se pasa la validación, el método validate, devuelve un array key:value
+        Post::create($validatedData);
 
         // ----------- Resetear las variables luego de crear el post
         $this->reset(['open', 'title', 'content']);
