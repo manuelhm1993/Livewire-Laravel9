@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 // ----------- Clase personalizada para crear un id alphanumérico
-use App\CustomClasses\Helper;
+use App\MHClasses\Helper;
 
 class CreatePost extends Component
 {
