@@ -8,7 +8,7 @@ use Livewire\Component;
 class CreatePost extends Component
 {
     // ----------- Propiedad para mostrar u ocultar el modal de creación de post
-    public $open = true;
+    public $open = false;
     public $title, $content;
 
     // ----------- Propiedad para establecer las reglas de validación, debe ser protected
