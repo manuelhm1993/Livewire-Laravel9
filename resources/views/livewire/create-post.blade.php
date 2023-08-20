@@ -45,7 +45,7 @@
 
             {{-- Campo para guardar imágenes --}}
             <div class="mb-4">
-                <input type="file" wire:model="image">
+                <input type="file" wire:model="image" id="{{$identificador}}">
                 <x-input-error for="image" />
             </div>
         </x-slot:content>
