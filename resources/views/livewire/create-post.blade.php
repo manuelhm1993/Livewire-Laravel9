@@ -40,10 +40,16 @@
                 Cancelar
             </x-secondary-button>
 
-            {{-- Botón de acción para crear un nuevo post --}}
-            <x-danger-button wire:click="store">
+            {{-- Escucha el click y llama al método store y en el proceso se remueve y muestra el spinner --}}
+            <x-danger-button wire:click="store" wire:loading.remove wire:target="store">
                 Crear post
             </x-danger-button>
+
+            {{-- wire:loading pone d-none al elemento y wire:target muestra el elemento en la acción especificada --}}
+            <div wire:loading wire:target="store" class="animate-spin inline-block w-10 h-10 border-[3px] border-current border-t-transparent text-red-600 rounded-full"
+                role="status" aria-label="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
         </x-slot:footer>
     </x-dialog-modal>
 </div>
