@@ -48,9 +48,9 @@
         {{-- Escuchar un evento desde un script normal lanzado desde un componente --}}
         <script>
             // Recibe el mensaje de feedback desde la fuente del evento
-            Livewire.on('feedbackSA2', (feedback) => {
+            Livewire.on('feedbackSA2', (title, feedback) => {
                 Swal.fire(
-                    '¡Post creado!',
+                    title,
                     feedback,
                     'success'
                 );
