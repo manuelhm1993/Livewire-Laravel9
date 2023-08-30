@@ -13,15 +13,24 @@
         </x-slot:title>
 
         <x-slot:content>
+            <x-mh.load-img-alert :image="$image" :post="$post" />
+
             <div class="mb-4">
                 <x-label value="Título del post" />
                 {{-- Para vincular las propiedades directamente en un input, se deben crear las rules --}}
-                <x-input wire:model="post.title" type="text" class="w-full" />
+                <x-input wire:model.defer="post.title" type="text" class="w-full" />
+                <x-input-error for="post.title" />
             </div>
 
             <div class="mb-4">
                 <x-label value="Contenido del post" />
-                <textarea wire:model="post.content" rows="6" class="form-control w-full"></textarea>
+                <textarea wire:model.defer="post.content" rows="6" class="form-control w-full"></textarea>
+                <x-input-error for="post.content" />
+            </div>
+
+            <div class="mb-4">
+                <input type="file" wire:model.defer="image" id="{{$identificador}}">
+                <x-input-error for="post.image" />
             </div>
         </x-slot:content>
 

@@ -12,14 +12,7 @@
 
         <x-slot:content>
             {{-- Alert que se muestra como feedback al estar procesando una imagen --}}
-            <div wire:loading wire:target="image" class="mb-4 bg-red-100 border-red400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <span class="font-bold">Cargando imagen.</span>
-                <span class="block sm:inline">Espere un momento mientras se procesa la imagen.</span>
-            </div>
-
-            @if ($image)
-                <img src="{{ $image->temporaryUrl() }}" alt="Imagen seleccionada" class="mb-4">
-            @endif
+            <x-mh.load-img-alert :image="$image" />
 
             <div class="mb-4">
                 {{-- Hacer uso de los componentes de jetstream para facilitar la maquetación --}}
@@ -45,7 +38,7 @@
 
             {{-- Campo para guardar imágenes --}}
             <div class="mb-4">
-                <input type="file" wire:model="image" id="{{$identificador}}">
+                <input type="file" wire:model.defer="image" id="{{$identificador}}">
                 <x-input-error for="image" />
             </div>
         </x-slot:content>
