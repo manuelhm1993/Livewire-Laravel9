@@ -25,6 +25,12 @@ class EditPost extends Component
         'post.content' => 'required',
     ];
 
+    // ----------- Resetear las propiedades del componente
+    public function resetFields() {
+        $this->reset(['open', 'image']);
+        $this->identificador = Helper::generateID();
+    }
+
     // Si se desea realizar algún otro tratamiento, se usa el método mount en lugar de un constructor ya que solo se llama una vez
     public function mount(Post $post)
     {
@@ -48,9 +54,7 @@ class EditPost extends Component
         // Se usa save para actualizar, ya que guarda los cambios en el objeto Post
         $this->post->save();
 
-        $this->reset(['open', 'image']);
-
-        $this->identificador = Helper::generateID();
+        $this->resetFields();
 
         $this->emitTo('show-posts', 'render');
 

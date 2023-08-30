@@ -45,7 +45,7 @@
 
         <x-slot:footer>
             {{-- Botón de acción para cerrar el modal --}}
-            <x-secondary-button class="mr-3" wire:click="$set('open', false)">
+            <x-secondary-button class="mr-3" wire:click="resetFields">
                 Cancelar
             </x-secondary-button>
 

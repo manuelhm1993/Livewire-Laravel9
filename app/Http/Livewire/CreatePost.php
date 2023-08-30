@@ -30,6 +30,14 @@ class CreatePost extends Component
         'image'   => 'required|image|max:2048',
     ];
 
+    public function resetFields() {
+        // ----------- Resetear las variables luego de crear el post
+        $this->reset(['open', 'title', 'content', 'image']);
+
+        // ----------- Resetear el input file, ya que es inmutable
+        $this->identificador = Helper::generateID();
+    }
+
     // ----------- Guarda el nuevo post
     public function store() {
         // ----------- Llamar a las reglas de validación, igual que crear una clase Request o request->validate();
@@ -44,11 +52,7 @@ class CreatePost extends Component
         // ----------- Si se pasa la validación, el método validate, devuelve un array key:value
         Post::create($validatedData);
 
-        // ----------- Resetear las variables luego de crear el post
-        $this->reset(['open', 'title', 'content', 'image']);
-
-        // ----------- Resetear el input file, ya que es inmutable
-        $this->identificador = Helper::generateID();
+        $this->resetFields();
 
         // ----------- Crear un evento para avisar a Show que se creó un nuevo post y renderize
         $this->emitTo('show-posts', 'render');//emitTo limita el evento a un solo oyente
