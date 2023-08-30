@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 // ----------- Clase personalizada para crear un id alphanumérico
-use App\MHClasses\Helper;
+use App\MH\Classes\Helper;
 
 class CreatePost extends Component
 {
@@ -30,6 +30,14 @@ class CreatePost extends Component
         'image'   => 'required|image|max:2048',
     ];
 
+    public function resetFields() {
+        // ----------- Resetear las variables luego de crear el post
+        $this->reset(['open', 'title', 'content', 'image']);
+
+        // ----------- Resetear el input file, ya que es inmutable
+        $this->identificador = Helper::generateID();
+    }
+
     // ----------- Guarda el nuevo post
     public function store() {
         // ----------- Llamar a las reglas de validación, igual que crear una clase Request o request->validate();
@@ -44,17 +52,13 @@ class CreatePost extends Component
         // ----------- Si se pasa la validación, el método validate, devuelve un array key:value
         Post::create($validatedData);
 
-        // ----------- Resetear las variables luego de crear el post
-        $this->reset(['open', 'title', 'content', 'image']);
-
-        // ----------- Resetear el input file, ya que es inmutable
-        $this->identificador = Helper::generateID();
+        $this->resetFields();
 
         // ----------- Crear un evento para avisar a Show que se creó un nuevo post y renderize
-        $this->emitTo('show-posts' , 'store');//emitTo limita el evento a un solo oyente
+        $this->emitTo('show-posts', 'render');//emitTo limita el evento a un solo oyente
 
         // ----------- Desencadena un evento de feedback usando sweetalert2
-        $this->emit('feedbackSA2', 'La acción fue ejecutada exitosamente.');
+        $this->emit('feedbackSA2', '¡Post creado!', 'La acción fue ejecutada exitosamente.');
     }
 
     // ----------- Darle un ID con la clase personalizada Helper a esta propiedad
