@@ -11,6 +11,12 @@ class EditPost extends Component
     public $post;
     public $open = false;
 
+    // Permite vinvular las propiedades directamente en un input
+    protected $rules = [
+        'post.title'   => 'required',
+        'post.content' => 'required',
+    ];
+
     // Si se desea realizar algún otro tratamiento, se usa el método mount en lugar de un constructor ya que solo se llama una vez
     public function mount(Post $post)
     {
