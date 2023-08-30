@@ -23,6 +23,19 @@ class EditPost extends Component
         $this->post = $post;
     }
 
+    public function update() {
+        $this->validate();
+ 
+        // Se usa save para actualizar, ya que guarda los cambios en el objeto Post
+        $this->post->save();
+
+        $this->reset(['open']);
+
+        $this->emitTo('show-posts', 'render');
+
+        $this->emit('feedbackSA2', '¡Post actualizado!', 'La acción fue ejecutada exitosamente.');
+    }
+
     public function render()
     {
         return view('livewire.edit-post');

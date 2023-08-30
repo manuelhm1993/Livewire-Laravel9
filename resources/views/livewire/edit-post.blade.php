@@ -26,7 +26,13 @@
         </x-slot:content>
 
         <x-slot:footer>
-            
+            <x-secondary-button wire:click="$toggle('open')" class="me-1">
+                Cancelar
+            </x-secondary-button>
+
+            <x-danger-button wire:click="update" wire:loading.attr="disabled" class="disabled:opacity-25">
+                Actualizar
+            </x-danger-button>
         </x-slot:footer>
     </x-dialog-modal>
 </div>

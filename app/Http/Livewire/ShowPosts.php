@@ -16,7 +16,8 @@ class ShowPosts extends Component
     // --------------- Oyentes de eventos
     //
     // Nombre del evento y método que lo escucha, el evento render, ejecuta el método render
-    protected $listeners = ['render' => 'render'];
+    // protected $listeners = ['render' => 'render'];
+    protected $listeners = ['render']; // Si el evento se llama igual que el método, se puede omitir la clave
 
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
