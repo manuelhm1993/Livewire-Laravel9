@@ -9,6 +9,7 @@ class EditPost extends Component
 {
     // Las propiedades se asignan dinámicamente desde la vista, pero se deben llamar igual que el parámetro
     public $post;
+    public $open = false;
 
     // Si se desea realizar algún otro tratamiento, se usa el método mount en lugar de un constructor ya que solo se llama una vez
     public function mount(Post $post)
