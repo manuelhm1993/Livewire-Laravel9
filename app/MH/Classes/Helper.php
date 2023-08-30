@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MHClasses;
+namespace App\MH\Classes;
 
 class Helper {
     // ------------ Equivalente a Math.random().toString(36).substring(2) + Date.now()

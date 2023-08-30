@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-use App\MHClasses\Helper;
+use App\MH\Classes\Helper;
 use App\Models\Post;
 
 use Illuminate\Support\Facades\Storage;
