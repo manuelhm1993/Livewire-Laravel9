@@ -1,5 +1,6 @@
 /* La directiva import para hojas de estilos va primero que el importe de clases como tailwind */
 @import './form.css';
+@import './buttons.css';
 
 @tailwind base;
 @tailwind components;
