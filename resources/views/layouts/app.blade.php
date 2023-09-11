@@ -19,6 +19,9 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        {{-- Pilas, útiles para definir estilos y scripts --}}
+        @stack('css')
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -35,6 +38,9 @@
         @stack('modals')
 
         @livewireScripts
+
+        {{-- Pilas, útiles para definir estilos y scripts --}}
+        @stack('js')
 
         {{-- Escuchar un evento desde un script normal lanzado desde un componente --}}
         <script>
