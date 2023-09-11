@@ -36,6 +36,9 @@ class CreatePost extends Component
 
         // ----------- Resetear el input file, ya que es inmutable
         $this->identificador = Helper::generateID();
+
+        // Evento para limpiar el CKEditor
+        $this->emit('resetCKEditor');
     }
 
     // ----------- Guarda el nuevo post

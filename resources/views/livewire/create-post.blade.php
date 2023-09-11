@@ -76,6 +76,11 @@
                     editor.model.document.on('change:data', () => {
                         @this.set('content', editor.getData());
                     });
+
+                    // Resetear el CKEditor
+                    Livewire.on('resetCKEditor', () => {
+                        editor.setData('');
+                    });
                 })
                 .catch( error => {
                     console.error( error );
