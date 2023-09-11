@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads; // Trait para cargar imágenes
+use Livewire\WithPagination; //  Trait para hacer paginaciones reactivas
 
 use App\MH\Classes\Helper;
 use App\Models\Post;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class ShowPosts extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     // --------------- Propiedades del componente
     public $search;
