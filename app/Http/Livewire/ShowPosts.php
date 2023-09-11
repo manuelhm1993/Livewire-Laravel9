@@ -26,7 +26,7 @@ class ShowPosts extends Component
 
     // Selector de items a mostrar
     public $entradas = [10, 25, 50, 100];
-    public $itemsPagina = 10;
+    public $itemsPagina = '10'; // Volverlo un string para poder ocultarlo en el queryString
 
     // Permite vinvular las propiedades directamente en un input
     protected $rules = [
@@ -39,6 +39,14 @@ class ShowPosts extends Component
     // Nombre del evento y método que lo escucha, el evento render, ejecuta el método render
     protected $listeners = ['render'];
 
+    // Guardar el estado actual de la página (guarda en url el valor de itemsPagina)
+    protected $queryString = [
+        'itemsPagina',
+        'sort'       ,
+        'direction'  ,
+        'search'     ,
+    ];
+
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
     {
@@ -46,7 +54,7 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', "%{$this->search}%")
                      ->orWhere('content', 'like', "%{$this->search}%")
                      ->orderBy($this->sort, $this->direction)
-                     ->paginate(intval($this->itemsPagina));
+                     ->paginate(intval($this->itemsPagina)); // Convertir itemsPagina en entero
 
         return view('livewire.show-posts', compact('posts')); // Toma el layout principal layouts.app
         // --------------- Se puede especificar el layout del que se extiende
