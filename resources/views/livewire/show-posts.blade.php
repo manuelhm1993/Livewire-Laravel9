@@ -4,12 +4,21 @@
         <x-mh.table>
             <div class="px-6 py-4 flex items-center">
                 {{-- Selector para establecer el número de intems a mostrar por página --}}
-                <select name="" id="">
-                    <option value="">Manuel</option>
-                </select>
+                <div class="flex items-center text-gray-600">
+                    <span>Mostrar</span>
+
+                    <select class="form-control mx-2">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+
+                    <span>Entradas</span>
+                </div>
 
                 {{-- Input para buscar elementos --}}
-                <x-input class="flex-1 mr-4" type="text" placeholder="Buscar..." wire:model="search" />
+                <x-input class="flex-1 mx-4" type="text" placeholder="Buscar..." wire:model="search" />
 
                 {{-- Botón y modal para crear posts --}}
                 @livewire('create-post')
