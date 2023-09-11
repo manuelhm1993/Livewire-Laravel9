@@ -17,12 +17,16 @@ class ShowPosts extends Component
     use WithPagination;
 
     // --------------- Propiedades del componente
-    public $search;
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
 
     // Editar un post
     public $post, $open_edit = false, $image, $identificador;
+
+    // Selector de items a mostrar
+    public $entradas = [10, 25, 50, 100];
+    public $itemsPagina = '10'; // Volverlo un string para poder ocultarlo en el queryString
 
     // Permite vinvular las propiedades directamente en un input
     protected $rules = [
@@ -35,6 +39,14 @@ class ShowPosts extends Component
     // Nombre del evento y método que lo escucha, el evento render, ejecuta el método render
     protected $listeners = ['render'];
 
+    // Guardar el estado actual de la página (guarda en url el valor de itemsPagina)
+    protected $queryString = [
+        'itemsPagina' => ['except' => '10'], // Ocultar el valor por defecto de la url
+        'sort'        => ['except' => 'id'],
+        'direction'   => ['except' => 'desc'],
+        'search'      => ['except' => ''],
+    ];
+
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
     {
@@ -42,9 +54,9 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', "%{$this->search}%")
                      ->orWhere('content', 'like', "%{$this->search}%")
                      ->orderBy($this->sort, $this->direction)
-                     ->paginate(10);
+                     ->paginate(intval($this->itemsPagina)); // Convertir itemsPagina en entero
 
-        return view('livewire.show-posts', compact('posts'));
+        return view('livewire.show-posts', compact('posts')); // Toma el layout principal layouts.app
         // --------------- Se puede especificar el layout del que se extiende
         // ->layout('layouts.base');
     }
@@ -93,6 +105,11 @@ class ShowPosts extends Component
 
     // Resetear filtrados de búsqueda con el trait de paginación: updatingNombrePropiedad
     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingItemsPagina()
     {
         $this->resetPage();
     }
