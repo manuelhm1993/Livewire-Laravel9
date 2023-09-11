@@ -17,7 +17,7 @@ class ShowPosts extends Component
     use WithPagination;
 
     // --------------- Propiedades del componente
-    public $search;
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
 
