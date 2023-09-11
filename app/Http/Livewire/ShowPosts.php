@@ -90,4 +90,10 @@ class ShowPosts extends Component
         $this->reset(['open_edit', 'image']);
         $this->identificador = Helper::generateID();
     }
+
+    // Resetear filtrados de búsqueda con el trait de paginación
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 }
