@@ -8,10 +8,10 @@
                     <span>Mostrar</span>
 
                     <select class="form-control mx-2">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
+                        {{-- Automarizar la carga del selector usando una propiedad array del componente --}}
+                        @foreach ($entradas as $entrada)
+                            <option value="{{ $entrada }}">{{ $entrada }}</option>
+                        @endforeach
                     </select>
 
                     <span>Entradas</span>

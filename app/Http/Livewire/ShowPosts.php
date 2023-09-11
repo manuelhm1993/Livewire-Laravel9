@@ -24,6 +24,9 @@ class ShowPosts extends Component
     // Editar un post
     public $post, $open_edit = false, $image, $identificador;
 
+    // Selector de items a mostrar
+    public $entradas = [10, 25, 50, 100];
+
     // Permite vinvular las propiedades directamente en un input
     protected $rules = [
         'post.title'   => 'required',
