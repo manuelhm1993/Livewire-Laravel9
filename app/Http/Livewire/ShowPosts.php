@@ -26,6 +26,7 @@ class ShowPosts extends Component
 
     // Selector de items a mostrar
     public $entradas = [10, 25, 50, 100];
+    public $itemsPagina = 10;
 
     // Permite vinvular las propiedades directamente en un input
     protected $rules = [
@@ -45,9 +46,9 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', "%{$this->search}%")
                      ->orWhere('content', 'like', "%{$this->search}%")
                      ->orderBy($this->sort, $this->direction)
-                     ->paginate(10);
+                     ->paginate(intval($this->itemsPagina));
 
-        return view('livewire.show-posts', compact('posts'));
+        return view('livewire.show-posts', compact('posts')); // Toma el layout principal layouts.app
         // --------------- Se puede especificar el layout del que se extiende
         // ->layout('layouts.base');
     }
@@ -96,6 +97,11 @@ class ShowPosts extends Component
 
     // Resetear filtrados de búsqueda con el trait de paginación: updatingNombrePropiedad
     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingItemsPagina()
     {
         $this->resetPage();
     }

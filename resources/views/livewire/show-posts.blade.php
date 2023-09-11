@@ -7,7 +7,7 @@
                 <div class="flex items-center text-gray-600">
                     <span>Mostrar</span>
 
-                    <select class="form-control mx-2">
+                    <select class="form-control mx-2" wire:model="itemsPagina">
                         {{-- Automarizar la carga del selector usando una propiedad array del componente --}}
                         @foreach ($entradas as $entrada)
                             <option value="{{ $entrada }}">{{ $entrada }}</option>
