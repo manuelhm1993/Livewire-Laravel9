@@ -28,6 +28,9 @@ class ShowPosts extends Component
     public $entradas = [10, 25, 50, 100];
     public $itemsPagina = '10'; // Volverlo un string para poder ocultarlo en el queryString
 
+    // Aplazar la carga, uso de spinners
+    public $readyToLoad = false;
+
     // Permite vinvular las propiedades directamente en un input
     protected $rules = [
         'post.title'   => 'required',
@@ -50,11 +53,16 @@ class ShowPosts extends Component
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
     {
-        // --------------- Campo de búsqueda por título y contenido
-        $posts = Post::where('title', 'like', "%{$this->search}%")
-                     ->orWhere('content', 'like', "%{$this->search}%")
-                     ->orderBy($this->sort, $this->direction)
-                     ->paginate(intval($this->itemsPagina)); // Convertir itemsPagina en entero
+        if($this->readyToLoad) {
+            // --------------- Campo de búsqueda por título y contenido
+            $posts = Post::where('title', 'like', "%{$this->search}%")
+                         ->orWhere('content', 'like', "%{$this->search}%")
+                         ->orderBy($this->sort, $this->direction)
+                         ->paginate(intval($this->itemsPagina)); // Convertir itemsPagina en entero
+        }
+        else {
+            $posts = [];
+        }
 
         return view('livewire.show-posts', compact('posts')); // Toma el layout principal layouts.app
         // --------------- Se puede especificar el layout del que se extiende
@@ -104,13 +112,16 @@ class ShowPosts extends Component
     }
 
     // Resetear filtrados de búsqueda con el trait de paginación: updatingNombrePropiedad
-    public function updatingSearch()
-    {
+    public function updatingSearch() {
         $this->resetPage();
     }
 
-    public function updatingItemsPagina()
-    {
+    public function updatingItemsPagina() {
         $this->resetPage();
+    }
+
+    // Renderiza la sección de posts cuando carga todo el documento
+    public function loadPosts() {
+        $this->readyToLoad = true;
     }
 }

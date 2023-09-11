@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadPosts">
     {{-- Aplicar el centrado del navigation-menu.blade.php --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-mh.table>
@@ -25,7 +25,7 @@
             </div>
 
             {{-- Mostrar el contenido si existen registros --}}
-            @if ($posts->count())
+            @if (count($posts))
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -94,18 +94,18 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{-- Feedback en caso de no haber registros --}}
+
+                {{-- Validar si existen suficientes elementos para paginar y mostra los links --}}
+                @if ($posts->hasPages())
+                    {{-- Links de paginación --}}
+                    <div class="px-6 py-3">
+                        {{ $posts->links() }}
+                    </div>
+                @endif
             @else
+                {{-- Feedback en caso de no haber registros --}}
                 <div class="px-6 py-4">
                     No se encontraron coincidencias que mostrar
-                </div>
-            @endif
-
-            {{-- Validar si existen suficientes elementos para paginar y mostra los links --}}
-            @if ($posts->hasPages())
-                {{-- Links de paginación --}}
-                <div class="px-6 py-3">
-                    {{ $posts->links() }}
                 </div>
             @endif
         </x-mh.table>
