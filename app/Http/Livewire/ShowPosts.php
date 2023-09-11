@@ -3,7 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use Livewire\WithFileUploads; // Trait para cargar imágenes
+use Livewire\WithPagination; //  Trait para hacer paginaciones reactivas
 
 use App\MH\Classes\Helper;
 use App\Models\Post;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class ShowPosts extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     // --------------- Propiedades del componente
     public $search;
@@ -40,7 +42,7 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', "%{$this->search}%")
                      ->orWhere('content', 'like', "%{$this->search}%")
                      ->orderBy($this->sort, $this->direction)
-                     ->get();
+                     ->paginate(10);
 
         return view('livewire.show-posts', compact('posts'));
         // --------------- Se puede especificar el layout del que se extiende
@@ -87,5 +89,11 @@ class ShowPosts extends Component
     public function resetFields() {
         $this->reset(['open_edit', 'image']);
         $this->identificador = Helper::generateID();
+    }
+
+    // Resetear filtrados de búsqueda con el trait de paginación: updatingNombrePropiedad
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

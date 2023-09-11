@@ -1,11 +1,4 @@
 <div>
-    {{-- Para que el renderizado reactivo funcione, todo el contenido debe estar dentro de un div padre --}}
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
     {{-- Aplicar el centrado del navigation-menu.blade.php --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-mh.table>
@@ -95,6 +88,14 @@
             @else
                 <div class="px-6 py-4">
                     No se encontraron coincidencias que mostrar
+                </div>
+            @endif
+
+            {{-- Validar si existen suficientes elementos para paginar y mostra los links --}}
+            @if ($posts->hasPages())
+                {{-- Links de paginación --}}
+                <div class="px-6 py-3">
+                    {{ $posts->links() }}
                 </div>
             @endif
         </x-mh.table>
