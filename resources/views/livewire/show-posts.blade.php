@@ -2,15 +2,16 @@
     {{-- Aplicar el centrado del navigation-menu.blade.php --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <x-mh.table>
-            {{-- Input para buscar elementos --}}
             <div class="px-6 py-4 flex items-center">
-                {{-- <input type="text" wire:model="search"> --}}
+                {{-- Selector para establecer el número de intems a mostrar por página --}}
+                <select name="" id="">
+                    <option value="">Manuel</option>
+                </select>
 
-                {{-- Usar el componente input de jetstream --}}
+                {{-- Input para buscar elementos --}}
                 <x-input class="flex-1 mr-4" type="text" placeholder="Buscar..." wire:model="search" />
 
-                {{-- Al ser un componente livewire se debe llamar de alguna de estas dos maneras --}}
-                {{-- <livewire:create-post> --}}
+                {{-- Botón y modal para crear posts --}}
                 @livewire('create-post')
             </div>
 
