@@ -90,6 +90,11 @@
                     No se encontraron coincidencias que mostrar
                 </div>
             @endif
+
+            {{-- Links de paginación --}}
+            <div class="px-6 py-3">
+                {{ $posts->links() }}
+            </div>
         </x-mh.table>
     </div>
 

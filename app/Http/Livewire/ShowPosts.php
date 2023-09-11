@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use Livewire\WithFileUploads; // Trait para cargar imágenes
 
 use App\MH\Classes\Helper;
 use App\Models\Post;
@@ -40,7 +40,7 @@ class ShowPosts extends Component
         $posts = Post::where('title', 'like', "%{$this->search}%")
                      ->orWhere('content', 'like', "%{$this->search}%")
                      ->orderBy($this->sort, $this->direction)
-                     ->get();
+                     ->paginate(10);
 
         return view('livewire.show-posts', compact('posts'));
         // --------------- Se puede especificar el layout del que se extiende
