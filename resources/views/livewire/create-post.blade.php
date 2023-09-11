@@ -25,12 +25,19 @@
                 <x-input-error for="title" />
             </div>
 
-            <div class="mb-4">
+            {{-- wire:ignore hace que no se renderice este elemento al ocurrir un cambio --}}
+            <div class="mb-4" wire:ignore>
                 <x-label value="Contenido del post" />
                 {{-- Para evitar el renderizado de la vista por cada letra que se escribe en los inputs se usa wire:model.defer --}}
 
                 {{-- Utilizar las clases de tailwind para crear un form-control personal y aplicarlo a un texarea común --}}
-                <textarea id="editor" rows="6" class="form-control w-full" wire:model.defer="content"></textarea>
+                <textarea
+                    id="editor"
+                    rows="6"
+                    class="form-control w-full"
+                    wire:model.defer="content"
+                >
+                </textarea>
 
                 {{-- Llamar al componente de validación de input jetstream --}}
                 <x-input-error for="content" />
@@ -65,6 +72,11 @@
         <script>
             ClassicEditor
                 .create( document.querySelector( '#editor' ) )
+                .then((editor) => {
+                    editor.model.document.on('change:data', () => {
+                        @this.set('content', editor.getData());
+                    });
+                })
                 .catch( error => {
                     console.error( error );
                 } );
