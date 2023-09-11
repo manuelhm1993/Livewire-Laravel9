@@ -91,10 +91,13 @@
                 </div>
             @endif
 
-            {{-- Links de paginación --}}
-            <div class="px-6 py-3">
-                {{ $posts->links() }}
-            </div>
+            {{-- Validar si existen suficientes elementos para paginar y mostra los links --}}
+            @if ($posts->hasPages())
+                {{-- Links de paginación --}}
+                <div class="px-6 py-3">
+                    {{ $posts->links() }}
+                </div>
+            @endif
         </x-mh.table>
     </div>
 
