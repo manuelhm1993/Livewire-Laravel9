@@ -41,10 +41,10 @@ class ShowPosts extends Component
 
     // Guardar el estado actual de la página (guarda en url el valor de itemsPagina)
     protected $queryString = [
-        'itemsPagina',
-        'sort'       ,
-        'direction'  ,
-        'search'     ,
+        'itemsPagina' => ['except' => '10'], // Ocultar el valor por defecto de la url
+        'sort'        => ['except' => 'id'],
+        'direction'   => ['except' => 'desc'],
+        'search'      => ['except' => ''],
     ];
 
     // --------------- Este método renderiza el contenido dentro del componente show-posts
