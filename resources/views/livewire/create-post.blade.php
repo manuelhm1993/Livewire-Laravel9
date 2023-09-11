@@ -55,4 +55,9 @@
             </x-danger-button>
         </x-slot:footer>
     </x-dialog-modal>
+
+    {{-- Llamar al stack js del layout app --}}
+    @push('js')
+        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    @endpush
 </div>
