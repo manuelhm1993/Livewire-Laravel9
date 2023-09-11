@@ -91,7 +91,7 @@ class ShowPosts extends Component
         $this->identificador = Helper::generateID();
     }
 
-    // Resetear filtrados de búsqueda con el trait de paginación
+    // Resetear filtrados de búsqueda con el trait de paginación: updatingNombrePropiedad
     public function updatingSearch()
     {
         $this->resetPage();
