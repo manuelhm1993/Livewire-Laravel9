@@ -3,21 +3,35 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
+use App\MH\Classes\Helper;
 use App\Models\Post;
+
+use Illuminate\Support\Facades\Storage;
 
 class ShowPosts extends Component
 {
+    use WithFileUploads;
+
     // --------------- Propiedades del componente
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
 
+    // Editar un post
+    public $post, $open_edit = false, $image, $identificador;
+
+    // Permite vinvular las propiedades directamente en un input
+    protected $rules = [
+        'post.title'   => 'required',
+        'post.content' => 'required',
+    ];
+
     // --------------- Oyentes de eventos
     //
     // Nombre del evento y método que lo escucha, el evento render, ejecuta el método render
-    // protected $listeners = ['render' => 'render'];
-    protected $listeners = ['render']; // Si el evento se llama igual que el método, se puede omitir la clave
+    protected $listeners = ['render'];
 
     // --------------- Este método renderiza el contenido dentro del componente show-posts
     public function render()
@@ -43,5 +57,35 @@ class ShowPosts extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function edit(Post $post) {
+        $this->post = $post;
+        $this->open_edit = true;
+        $this->identificador = Helper::generateID();
+    }
+
+    public function update() {
+        // El método validate permite llenar el post con los nuevos datos si pasan la validación
+        $this->validate();
+
+        // Validar si se seleccionó una nueva imagen
+        if($this->image) {
+            // Eliminar la imagen actual del post
+            Storage::disk('public')->delete($this->post->image);
+
+            // Guardar la nueva imagen en el directorio posts posts y modificar la url del post
+            $this->post->image = $this->image->store('posts', 'public');
+        }
+
+        $this->post->save();
+        $this->resetFields();
+        $this->emit('feedbackSA2', '¡Post actualizado!', 'La acción fue ejecutada exitosamente.');
+    }
+
+    // ----------- Resetear las propiedades del componente
+    public function resetFields() {
+        $this->reset(['open_edit', 'image']);
+        $this->identificador = Helper::generateID();
     }
 }

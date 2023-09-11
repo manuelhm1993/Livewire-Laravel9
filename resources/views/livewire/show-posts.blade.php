@@ -61,29 +61,31 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($posts as $post)
+                        @foreach ($posts as $item)
                             <tr>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $post->id }}
+                                        {{ $item->id }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $post->title }}
+                                        {{ $item->title }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $post->content }}
+                                        {{ $item->content }}
                                     </p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{-- Componente de anidamiento, se llama repetidas veces (recursiva o por bucle), require una key
-                                        para identificarlo como único, en este caso el id --}}
-                                    @livewire('edit-post', ['post' => $post], key($post->id))
+                                    {{-- Agregar un botón para no cargar 100 modales, simplemente uno que reciba parámetros --}}
+                                    {{-- Al hacer click se llama al método edit del Componente ShowPost --}}
+                                    <a class="btn btn-success" wire:click="edit({{ $item }})">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -97,4 +99,7 @@
             @endif
         </x-mh.table>
     </div>
+
+    {{-- Componente modal para editar un post --}}
+    <x-mh.edit-post :image="$image" :post="$post" :identificador="$identificador" />
 </div>

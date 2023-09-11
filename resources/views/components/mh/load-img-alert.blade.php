@@ -3,7 +3,7 @@
         <span class="font-bold">Cargando imagen.</span>
         <span class="block sm:inline">Espere un momento mientras se procesa la imagen.</span>
     </div>
-    
+
     @if ($image)
         <img src="{{ $image->temporaryUrl() }}" alt="Imagen seleccionada" class="mb-4">
     @elseif (isset($post))
