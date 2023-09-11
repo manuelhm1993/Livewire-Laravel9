@@ -30,7 +30,7 @@
                 {{-- Para evitar el renderizado de la vista por cada letra que se escribe en los inputs se usa wire:model.defer --}}
 
                 {{-- Utilizar las clases de tailwind para crear un form-control personal y aplicarlo a un texarea común --}}
-                <textarea name="" id="" rows="6" class="form-control w-full" wire:model.defer="content"></textarea>
+                <textarea id="editor" rows="6" class="form-control w-full" wire:model.defer="content"></textarea>
 
                 {{-- Llamar al componente de validación de input jetstream --}}
                 <x-input-error for="content" />
@@ -58,6 +58,16 @@
 
     {{-- Llamar al stack js del layout app --}}
     @push('js')
+        {{-- CDN de CKeditor5 --}}
         <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+        {{-- Crear una instancia de CKeditor --}}
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
     @endpush
 </div>
