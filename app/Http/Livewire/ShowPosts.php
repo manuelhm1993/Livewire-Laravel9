@@ -40,7 +40,10 @@ class ShowPosts extends Component
     // --------------- Oyentes de eventos
     //
     // Nombre del evento y método que lo escucha, el evento render, ejecuta el método render
-    protected $listeners = ['render'];
+    protected $listeners = [
+        'render',
+        'delete',
+    ];
 
     // Guardar el estado actual de la página (guarda en url el valor de itemsPagina)
     protected $queryString = [
@@ -123,5 +126,10 @@ class ShowPosts extends Component
     // Renderiza la sección de posts cuando carga todo el documento
     public function loadPosts() {
         $this->readyToLoad = true;
+    }
+
+    // Método para borrar post usando implicit binding
+    public function delete(Post $post) {
+        $post->delete();
     }
 }

@@ -95,11 +95,18 @@
                                         {{ $item->content }}
                                     </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm flex">
                                     {{-- Agregar un botón para no cargar 100 modales, simplemente uno que reciba parámetros --}}
                                     {{-- Al hacer click se llama al método edit del Componente ShowPost --}}
-                                    <a class="btn btn-success" wire:click="edit({{ $item }})">
+                                    <a class="btn btn-success mr-2" wire:click="edit({{ $item }})">
                                         <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+
+                                    <a
+                                    class="btn btn-danger"
+                                    wire:click="$emit('deletePost', {{ $item->id }})"
+                                    >
+                                        <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -125,4 +132,34 @@
 
     {{-- Componente modal para editar un post --}}
     <x-mh.edit-post :image="$image" :post="$post" :identificador="$identificador" />
+
+    @push('js')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            Livewire.on('deletePost', (postId) => {
+                Swal.fire({
+                    title: '¿Confirma que desea borrar el post?',
+                    text: "Esta acción no se podrá revertir",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, confirmo'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        // Emitir un evento al componente ShowPost, pasando el id al método delete
+                        Livewire.emitTo('show-posts', 'delete', postId);
+
+                        Swal.fire(
+                            '¡Eliminado!.',
+                            'Post eliminado exitosamente.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        </script>
+    @endpush
 </div>
